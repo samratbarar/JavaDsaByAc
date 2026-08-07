@@ -18,6 +18,28 @@ public class MaxWaterCon {
 
         return maxWater;
     }
+
+    public static int storeWaterBy2P(ArrayList<Integer> heights) {
+        int maxWater = 0;
+        int left = 0, right = heights.size() - 1;
+
+        while (left < right) {
+            int height = Math.min(heights.get(left), heights.get(right));
+            int width = (right - left);
+            int water = height * width;
+
+            if (heights.get(left) > heights.get(right)) {
+                right--;
+            } else {
+                left++;
+            }
+
+            maxWater = Math.max(maxWater, water);
+        }
+
+        return maxWater;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> heights = new ArrayList<>();
@@ -33,6 +55,7 @@ public class MaxWaterCon {
         heights.add(7);
 
         System.out.println("Max water that can be store is " + storeWater(heights));
+        System.out.println("Max water that can be store is " + storeWaterBy2P(heights));
 
         sc.close();
     }
