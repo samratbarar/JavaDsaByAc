@@ -1,4 +1,4 @@
-package JavaDsaByAc.Lecture_10;
+package Lecture_10;
 
 import java.util.*;
 

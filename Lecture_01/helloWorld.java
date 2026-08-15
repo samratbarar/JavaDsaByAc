@@ -1,4 +1,4 @@
-package JavaDsaByAc.Lecture_01;
+package Lecture_01;
 
 import java.util.Scanner;
 
