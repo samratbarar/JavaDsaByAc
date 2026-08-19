@@ -23,5 +23,10 @@ public class NextGreaterEle {
 
             s.push(curr);
         }
+
+        for (int i = 0; i < nextGreater.length; i++) {
+            System.out.print(nextGreater[i] + " ");
+        }
+        System.out.println();
     }
 }
