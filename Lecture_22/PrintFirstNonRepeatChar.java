@@ -16,26 +16,28 @@ public class PrintFirstNonRepeatChar {
 
         for (int i = 0; i < letters.length(); i++) {
             char letter = letters.charAt(i);
-            
+
             if (occurence[letter - 'a'] == 0) {
                 q.add(letter);
             }
-            
+
             occurence[letter - 'a']++;
-            
+
             if (q.isEmpty()) {
+                System.out.println("-1");
+            } else {
+                while (!q.isEmpty() && occurence[q.peek()] > 1) {
+                    q.remove();
+                }
+
+                if (q.isEmpty()) {
                     System.out.println("-1");
                 } else {
-                    while (!q.isEmpty() && occurence[q.peek()] > 1) {
-                        q.remove();
-                    }
-
-                    if (q.isEmpty()) {
-                        System.out.println("-1");
-                    } else {
-                        System.out.println(q.peek());
-                    }
+                    System.out.println(q.peek());
                 }
+            }
         }
+
+        sc.close();
     }
 }
