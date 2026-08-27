@@ -9,55 +9,33 @@ public class PrintFirstNonRepeatChar {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Queue<Character> q = new LinkedList<>();
+        int[] occurence = new int[26];
 
         System.out.println("Enter the letter stream");
         String letters = sc.nextLine();
 
         for (int i = 0; i < letters.length(); i++) {
             char letter = letters.charAt(i);
-            boolean isNonRep = true;
-
-            for (int j = 0; j < i; j++) {
-                if (letters.charAt(j) == letter) {
-                    isNonRep = false;
-                    break;
-                }
-            }
-
-            if (isNonRep) {
+            
+            if (occurence[letter - 'a'] == 0) {
                 q.add(letter);
             }
-
+            
+            occurence[letter - 'a']++;
+            
             if (q.isEmpty()) {
-                System.out.println("-1");
-                continue;
-            } else {
-                if (letter == q.peek()) {
-                    q.remove();
-                }
-
-                if (q.isEmpty()) {
                     System.out.println("-1");
-                    continue;
                 } else {
-                    for (int j = 0; j < i; j++) {
-                        if (q.isEmpty()) {
-                            break;
-                        }
+                    while (!q.isEmpty() && occurence[q.peek()] > 1) {
+                        q.remove();
+                    }
 
-                        if (letters.charAt(j) == q.peek()) {
-                            q.remove();
-                            j = -1;
-                        }
+                    if (q.isEmpty()) {
+                        System.out.println("-1");
+                    } else {
+                        System.out.println(q.peek());
                     }
                 }
-            }
-
-            if (q.isEmpty()) {
-                System.out.println("-1");
-            } else {
-                System.out.println(q.peek());
-            }
         }
     }
 }
